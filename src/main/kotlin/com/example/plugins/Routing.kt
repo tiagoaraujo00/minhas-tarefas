@@ -18,7 +18,7 @@ fun Application.configureRouting() {
         post("/tasks") {
             val task = call.receive<Task>()
             repository.save(task)
-            call.respondText("Task was created", status = HttpStatusCode.Created)
+            call.respondText("Task created", status = HttpStatusCode.Created)
         }
     }
 }
