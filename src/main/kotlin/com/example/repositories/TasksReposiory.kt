@@ -1,16 +1,13 @@
 package com.example.repositories
 
+import com.example.database.dao.TaskDao
 import com.example.models.Task
 
-class TasksReposiory {
+class TasksReposiory(
+    private val dao: TaskDao = TaskDao()
+) {
 
-    val tasks get() = _tasks.toList()
+    suspend fun tasks() = dao.findAll()
 
-    fun save(task: Task) {
-        _tasks.add(task)
-    }
-
-    companion object {
-        private val _tasks = mutableListOf<Task>()
-    }
+    suspend fun save(task: Task) = dao.save(task)
 }
